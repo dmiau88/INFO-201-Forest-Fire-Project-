@@ -58,7 +58,7 @@ their causes.
 5. The data set can give insight into the cause of the wildfires, their sizes, and the name of
    each wildfire. This can help us find relational patterns between the various wildfires (ex. patterns in the causes of wildfires).
 
-[Data Set 3](
+[Data Set 3](https://enterprisecontentnew-usfs.hub.arcgis.com/datasets/monitoring-trends-in-burn-severity-fire-occurrence-locations-feature-layer)
 1. United States Department of Agriculture Forest Service.
 2. The Monitoring Trends in Burn Severity (MTBS) project is conducted through a partnership between the U.S. Geological Survey National Center for Earth Resources Observation and Science (EROS) and the USDA Forest Service Geospatial Technology and Application Center (GTAC).
 3. There are 22,970 observations/rows in the data set.
