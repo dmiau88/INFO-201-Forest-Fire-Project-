@@ -6,6 +6,13 @@
 
 ---
 
+Values to find in dataset:
+1. avg acres burned per year
+2. average fires per county per year
+3. average time it took to contain each fire per year
+
+
+
 ## Domain of Interest
 
 #### _Why are you interested in this field/domain?_
