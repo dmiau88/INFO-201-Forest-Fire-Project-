@@ -1,109 +1,43 @@
 ---
-title: "Forest Fire"
-author: "Andrew Wong, Daniel Miau, Kyle Tsang, Ibrahim Yusuf"
+title: "Forest Fire Exploratory Analysis"
+author: "Group 1: Andrew Wong, Daniel Miau, Kyle Tsang, Ibrahim Yusuf"
 date: "11/13/2020"
 output: html_document
 ---
-# INFO-201-Forest-Fire-Project-
-
-# **INFO 201 BB**
-## Group 1: Andrew Wong, Daniel Miau, Kyle Tsang, Ibrahim Yusuf
-### Project Topic: California Forest Fires
-
----
-
-Values to find in dataset:
-1. avg acres burned per year
-2. average fires per county per year
-3. average time it took to contain each fire per year
 
 ```{r setup, include=FALSE}
 ```
 
 
-## Domain of Interest
+## Introductory Paragraph
 
-#### _Why are you interested in this field/domain?_
+#### _Write an introductory paragraph explaining the domain/data set (feel free to borrow from the project proposal)_
 
-We are interested in this topic because it is very relevant to current events. While many of our
-group members experienced the result of the fires from Seattle, one of our teammates Andrew Wong
-actually lived 30 minutes away from his house. Our project topic of forest fires also relates to
-the overarching conversation around climate change and fossil fuel usage. As the nationwide forest
-fires continue to rage, we hope to find patterns not only in the impact of these fires, but also in
-their causes.
+Our domain of interest are the California Forest Fires. We are interested in this topic because it is very relevant to current events. While many of our group members experienced the result of the fires from Seattle, one of our teammates Andrew Wong actually lived 30 minutes away from his house. Our project topic of forest fires also relates to the overarching conversation around climate change and fossil fuel usage. As the nationwide forest fires continue to rage, we hope to find patterns not only in the impact of these fires, but also in their causes.
 
-----
 
-#### _What other examples of data driven project have you found related to this domain?_
--	[Source 1, _Kaggle_](https://www.kaggle.com/rtatman/188-million-us-wildfires)
--  [Source 2, _Kaggle_](https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020)
--	[Source 3, _Columbia_](http://www.columbia.edu/~yh2693/ForestFire.html)
--	[Source 4, _LA Times_](https://www.latimes.com/wildfires-map/)
--	[Source 5, _FireWeatherAvalanche_](https://www.fireweatheravalanche.org/fire/)
+Our [data set](https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020) is forest fire information collected by the California Department of Forestry and Fire Protection and sourced on Kaggle.com. There are 1637 observations/rows in this data set, and 40 features/columns in this data set. The data set can answer questions such as the size of the fires, the locations (counties, latitude, etc.) of the fires, as well as the lives taken and monetary damage caused by the fires.
 
-----
+## Summary Information
 
-#### _What data-driven questions do you hope to answer about this domain?_
-1.	What areas in California are most affected by forest fires?
-```{r}
-```
-2.	How have the California wildfires grown in size and location over time?
-```{r}
-```
-3.  What characteristics (ex. average rainfall) do the most affected areas (the answer to
-    question 1) have in common?
-```{r}
-```
+#### _Write a summary paragraph that includes information calculated by your summary information function_
 
-----
+By parsing the information in our data set, we found there to be a total of 1,636 fires in California spanning the years of 2013-2019. The data set provided 40 unique features of each fire (not every feature pertained to each fire). To get a more closer look we found there to be 59 individual counties that had fire information. The largest fire within our data set was a ranch fire at the Mendocino Complex. We also pursued more in-depth information in our aggregate table.
 
-## Finding Data
+## Aggregate Table Rendering
 
-1. Where did you download the data (e.g., a web URL)?
-```{r}
-```
-2. How was the data collected or generated? Make sure to explain who collected the data
-   (not necessarily the same people that host the data), and who or what the data is about?
-```{r}
-```
-3. How many observations (rows) are in your data?
-```{r}
-```
-4. How many features (columns) are in the data?
-```{r}
-```
-5. What questions (from above) can be answered using the data in this dataset?
-```{r}
-```
+```{r aggregate_table, echo = F}
+ArchiveYear <- fires$ArchiveYear
+Counties <- c()
 
-----
 
-[Data Set 1](https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020)
-1. Kaggle.com
-2. The data is compiled from the [California Department of Forestry and Fire Protection](https://www.fire.ca.gov/). This set has lots of data regarding where wildfires have occurred (county name, latitude/longitude), and contains details about when the wildfire has started.
-3. There are 1637 observations/rows in the data set.
-4. There are 40 features/columns in the data set.
-5. The data set can answer questions such as the size of the fires, the locations (counties,
-   latitude, etc.) of the fires, as well as the lives taken and monetary damage caused by the fires.
+## Charts and Chart Purposes
 
-----
+####Chart 1: Average Acres Burned Each Year
 
-[Data Set 2](https://github.com/CornellCAC/CVW_PyDataSci1/blob/master/data/wildfires/Fires_100.xlsx)
-1. Github.com
-2. The data is compiled from the [California Department of Forestry and Fire Protection](https://www.fire.ca.gov/),
-   and hosted by Cornell University. The data set provides many statistics regarding the causes, relative sizes, and names of California wildfires dating back to 1878.
-3. There are 35044 observations/rows in the data set.
-4. There are 14 features/columns in the data set.
-5. The data set can give insight into the cause of the wildfires, their sizes, and the name of
-   each wildfire. This can help us find relational patterns between the various wildfires (ex. patterns in the causes of wildfires).
+This line chart was intended to show the relationship between years and the average acres burned across California. The most pertinent observation was that as time has elapsed, the average number of years increases as well. In short, this means that on average, the number of acres burned across California has increased every year.
 
-----
+####Chart 2: 
 
-[Data Set 3](https://enterprisecontentnew-usfs.hub.arcgis.com/datasets/monitoring-trends-in-burn-severity-fire-occurrence-locations-feature-layer)
-1. United States Department of Agriculture Forest Service.
-2. The Monitoring Trends in Burn Severity (MTBS) project is conducted through a partnership between the U.S. Geological Survey National Center for Earth Resources Observation and Science (EROS) and the USDA Forest Service Geospatial Technology and Application Center (GTAC).
-3. There are 22,970 observations/rows in the data set.
-4. There are 18 features/columns in the data set.
-5. This dataset can help us answer questions regarding the frequency, extent, and magnitude of the California wildfires. This can help us answer questions about which areas are most impacted by wildfires, and can allow us to track the relative size and severity of various wildfires.
 
 ----
