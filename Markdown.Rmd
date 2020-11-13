@@ -6,6 +6,37 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+
+
+fires <- read.csv("./data/California_Fire_Incidents.csv")
+
+avg_num_fires_counties <- fires %>%
+  group_by(ArchiveYear, Counties) %>%
+  summarize(avg_fires_county = round(mean(AcresBurned, na.rm = TRUE)))
+
+avg_acres_burned <- fires %>%
+  group_by(ArchiveYear) %>%
+  summarize(avg_acres = round(mean(AcresBurned, na.rm = TRUE)))
+
+fires <- fires %>%
+  mutate(
+    Extinguished = substr(Extinguished, 1, 10),
+    Started = substr(Started, 1, 10)
+  ) %>%
+  mutate(
+    Extinguished = as.Date(Extinguished, "%Y-%m-%d"),
+    Started = as.Date(Started, "%Y-%m-%d")
+  )
+
+avg_time_contain <- fires %>%
+  mutate(Date_Difference = Extinguished - Started) %>%
+  filter(Date_Difference >= 0) %>%
+  group_by(ArchiveYear) %>%
+  summarize(avg_day_diff = round(mean(Date_Difference, na.rm = TRUE)))
 ```
 
 
@@ -26,18 +57,46 @@ By parsing the information in our data set, we found there to be a total of 1,63
 
 ## Aggregate Table Rendering
 
+
 ```{r aggregate_table, echo = F}
-ArchiveYear <- fires$ArchiveYear
-Counties <- c()
+Year <- avg_num_fires_counties$ArchiveYear
+County <- avg_num_fires_counties$Counties
+AverageNumberOfFires <- avg_num_fires_counties$avg_fires_county
+
+df <- data.frame(Year = Year, County = County, AverageNumberOfFires = AverageNumberOfFires)
+
+kable(df)
+
+```
+
 
 
 ## Charts and Chart Purposes
 
-####Chart 1: Average Acres Burned Each Year
+#### Chart 1: Average Acres Burned Each Year
 
-This line chart was intended to show the relationship between years and the average acres burned across California. The most pertinent observation was that as time has elapsed, the average number of years increases as well. In short, this means that on average, the number of acres burned across California has increased every year.
+```{r chart_1, echo = F}
+ggplot(data = avg_acres_burned) +
+  geom_line(mapping = aes(x = ArchiveYear, y = avg_acres)) + 
+  labs(
+    title = "Average Acres Burned Each Year",
+    x = "Year",
+    y = "Average Acres"
+  )
+```
 
-####Chart 2: 
+This line chart was intended to show the relationship between years and the average acres burned across California. The most pertinent observation was that as time has elapsed, the average number of acres burned increases as well. In short, this means that on average, the number of acres burned across California has increased every year.
 
+#### Chart 2: 
+
+```{r chart_2, echo = F}
+ggplot(data = total_num_fires) + 
+  geom_col(mapping = aes(x = ArchiveYear, y = total_num_per_year)) +
+  labs(
+    title = "Total Number of Fires Each Year",
+    x = "Year",
+    y = "Number of Fires"
+  )
+```
 
 ----
