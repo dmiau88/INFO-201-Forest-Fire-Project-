@@ -11,10 +11,10 @@ avg_acres_burned <- fires %>%
   group_by(ArchiveYear) %>%
   summarize(avg_acres = round(mean(AcresBurned, na.rm = TRUE)))
 
-# Average number of fires per county per year
+# Average number of fires per county from 2013-2019
 avg_num_fires_counties <- fires %>%
-  group_by(ArchiveYear, Counties) %>%
-  summarize(avg_fires_county = round(mean(AcresBurned, na.rm = TRUE)))
+  group_by(Counties) %>%
+  summarize(avg_fires_county = round(mean(n(), na.rm = TRUE)))
 
 # Average amount of days it took to contain each fire per year
 fires <- fires %>%

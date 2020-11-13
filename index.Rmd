@@ -1,0 +1,127 @@
+---
+title: "Forest Fire Exploratory Analysis"
+author: "Group 1: Andrew Wong, Daniel Miau, Kyle Tsang, Ibrahim Yusuf"
+date: "11/13/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+
+
+fires <- read.csv("./data/California_Fire_Incidents.csv")
+
+avg_num_fires_counties <- fires %>%
+  group_by(Counties) %>%
+  summarize(avg_fires_county = round(mean(n(), na.rm = TRUE)))
+
+avg_acres_burned <- fires %>%
+  group_by(ArchiveYear) %>%
+  summarize(avg_acres = round(mean(AcresBurned, na.rm = TRUE)))
+
+total_num_fires <- fires %>%
+  group_by(ArchiveYear) %>%
+  summarize(total_num_per_year = n())
+
+fires <- fires %>%
+  mutate(
+    Extinguished = substr(Extinguished, 1, 10),
+    Started = substr(Started, 1, 10)
+  ) %>%
+  mutate(
+    Extinguished = as.Date(Extinguished, "%Y-%m-%d"),
+    Started = as.Date(Started, "%Y-%m-%d")
+  )
+
+avg_time_contain <- fires %>%
+  mutate(Date_Difference = Extinguished - Started) %>%
+  filter(Date_Difference >= 0) %>%
+  group_by(ArchiveYear) %>%
+  summarize(avg_day_diff = round(mean(Date_Difference, na.rm = TRUE)))
+
+county_fires_plot <- ggplot(data = avg_time_contain) +
+  geom_smooth(mapping = aes(x = ArchiveYear, y = avg_day_diff), method = loess, formula = y ~ x) +
+  labs(title = "Average Number of days it took to contain fires from 2013-2019", x = "Year", y = "Average Number of Days")
+
+```
+
+
+## **Introduction**
+
+
+Our domain of interest are the California Forest Fires. We are interested in this topic because it is very relevant to current events. While many of our group members experienced the result of the fires from Seattle, one of our teammates Andrew Wong actually lived 30 minutes away from his house. Our project topic of forest fires also relates to the overarching conversation around climate change and fossil fuel usage. As the nationwide forest fires continue to rage, we hope to find patterns not only in the impact of these fires, but also in their causes.
+
+
+Our [data set](https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020) is forest fire information collected by the California Department of Forestry and Fire Protection and sourced on Kaggle.com. There are 1637 observations/rows in this data set, and 40 features/columns in this data set. The data set can answer questions such as the size of the fires, the locations (counties, latitude, etc.) of the fires, as well as the lives taken and monetary damage caused by the fires.
+
+## **Summary Information**
+
+By parsing the information in our data set, we found there to be a total of 1,636 fires in California spanning the years of 2013-2019. The data set provided 40 unique features of each fire (not every feature pertained to each fire). To get a more closer look we found there to be 59 individual counties that had fire information. The largest fire within our data set was a ranch fire at the Mendocino Complex. We also pursued more in-depth information in our aggregate table.
+
+## **Average number of fires per county from 2013-2019 in California**
+
+The information in the table reveals the average number of fires per county across 2013 to 2019. The information reveals the counties most impacted by fires (based on the amount of fires, not accounting for fire severity or other important factors). The reason why we chose this information to include in our table is to highlight the most impacted counties by the fires and see which regions typically require the most aid when those wildfires occur. While this data is not the end of our search, it can allow us to dive deeper into the characteristics shared by these counties and can drive us to ask more specific questions. 
+
+
+```{r aggregate_table, echo = F}
+County <- avg_num_fires_counties$Counties
+AverageNumberOfFires <- avg_num_fires_counties$avg_fires_county
+
+df <- data.frame(County = County, AverageNumberOfFires = AverageNumberOfFires)
+
+kable(df)
+
+```
+
+
+## **Charts and Chart Descriptions**
+
+#### Chart 1:
+
+```{r chart_1, echo = F}
+ggplot(data = avg_acres_burned) +
+  geom_line(mapping = aes(x = ArchiveYear, y = avg_acres)) + 
+  labs(
+    title = "Average Acres Burned Each Year",
+    x = "Year",
+    y = "Average Acres"
+  )
+```
+
+
+This line chart was intended to show the relationship between years and the average acres burned across California. The most pertinent observation was that as time has elapsed, the average number of acres burned increases as well. In short, this means that on average, the number of acres burned across California has increased every year. The reason why we chose to include the chart is to find trends in the damages that the fires inflict each year. We understand that these fires force people to evacuate and leave their lives and homes, and hope to raise concern into the increased severity of the fires. By identifying that the fires have become more intense over time (in terms of their destruction per year), we can bring this issue to the forefront of the conversations around climate change and fossil fuel usage as a direct result.
+
+
+#### Chart 2: 
+
+```{r chart_2, echo = F}
+ggplot(data = total_num_fires) + 
+  geom_col(mapping = aes(x = ArchiveYear, y = total_num_per_year)) +
+  labs(
+    title = "Total Number of Fires Each Year",
+    x = "Year",
+    y = "Number of Fires"
+  )
+```
+
+
+This chart was intended to show the relationship between years and the number of fires. The most pertinent observation was that as time has elapsed, the total amount of fires each year has also increased. This means that the incremental amount of fires across years has increased. While this data does not provide a “why” or “how”, it does show an overall trend and raises questions that pursue the “why” or “how”. The reason why we chose to include this chart was to show the impact of global warming and demonstrate how there could be a potential correlation between rising temperatures (each year, temperatures have risen globally) and the number of wildfires in a given state. 
+
+
+#### Chart 3:
+```{r char_3, echo = F, warning = F}
+
+ggplotly(county_fires_plot)
+```
+
+This chart was intended to show the relationship between years and the average time it took to contain each fire. The most pertinent observation was that as time has elapsed, the average time it took to contain all fires each year has also increased. It is important to note that this statistic is correlated to the average number of acres burned each year: the more acres a fire covers, the longer it will take to completely extinguish the fire. While similar to the chart displaying the average number of acres burned each year, this observation can help give better context as it can be hard to understand the true scope of, for example, 100 acres or 1000 acres burned. The reason why we included this chart was to learn about how violent the wildfires have become over this range of years, as the data points that show a greater average number of days that it takes to contain the wildfires, the more serious the wildfires were in those years. 
+
+
+**Disclaimer:**
+**The data set does not provide values for the entirety of 2019, which has impacted the data visualizations for 2019**
+
+----
