@@ -1,23 +1,9 @@
----
-title: "Forest Fire"
-author: "Andrew Wong, Daniel Miau, Kyle Tsang, Ibrahim Yusuf"
-date: "11/13/2020"
-output: html_document
----
-# INFO-201-Forest-Fire-Project-
 
 # **INFO 201 BB**
 ## Group 1: Andrew Wong, Daniel Miau, Kyle Tsang, Ibrahim Yusuf
 ### Project Topic: California Forest Fires
 
 ---
-
-Values to find in dataset:
-1. avg acres burned per year
-2. average fires per county per year
-3. average time it took to contain each fire per year
-
-
 
 ## Domain of Interest
 
@@ -32,43 +18,34 @@ their causes.
 
 #### _What other examples of data driven project have you found related to this domain?_
 -	[Source 1, _Kaggle_](https://www.kaggle.com/rtatman/188-million-us-wildfires)
--  [Source 2, _Kaggle_](https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020)
+- [Source 2, _Kaggle_](https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020)
 -	[Source 3, _Columbia_](http://www.columbia.edu/~yh2693/ForestFire.html)
 -	[Source 4, _LA Times_](https://www.latimes.com/wildfires-map/)
 -	[Source 5, _FireWeatherAvalanche_](https://www.fireweatheravalanche.org/fire/)
 
+## Values to find in dataset:
+
+1. average acres burned per year
+2. average fires per county per year
+3. average time it took to contain each fire per year
 
 #### _What data-driven questions do you hope to answer about this domain?_
 1.	What areas in California are most affected by forest fires?
-```{r}
-```
 2.	How have the California wildfires grown in size and location over time?
-```{r}
-```
 3.  What characteristics (ex. average rainfall) do the most affected areas (the answer to
     question 1) have in common?
-```{r}
-```
 
 
 ## Finding Data
 
+**Questions:**
+
 1. Where did you download the data (e.g., a web URL)?
-```{r}
-```
 2. How was the data collected or generated? Make sure to explain who collected the data
    (not necessarily the same people that host the data), and who or what the data is about?
-```{r}
-```
 3. How many observations (rows) are in your data?
-```{r}
-```
 4. How many features (columns) are in the data?
-```{r}
-```
 5. What questions (from above) can be answered using the data in this dataset?
-```{r}
-```
 
 [Data Set 1](https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020)
 1. Kaggle.com
@@ -87,7 +64,7 @@ their causes.
 5. The data set can give insight into the cause of the wildfires, their sizes, and the name of
    each wildfire. This can help us find relational patterns between the various wildfires (ex. patterns in the causes of wildfires).
 
-[Data Set 3](https://enterprisecontentnew-usfs.hub.arcgis.com/datasets/monitoring-trends-in-burn-severity-fire-occurrence-locations-feature-layer)
+[Data Set 3]((https://enterprisecontentnew-usfs.hub.arcgis.com/datasets/monitoring-trends-in-burn-severity-fire-occurrence-locations-feature-layer)
 1. United States Department of Agriculture Forest Service.
 2. The Monitoring Trends in Burn Severity (MTBS) project is conducted through a partnership between the U.S. Geological Survey National Center for Earth Resources Observation and Science (EROS) and the USDA Forest Service Geospatial Technology and Application Center (GTAC).
 3. There are 22,970 observations/rows in the data set.
