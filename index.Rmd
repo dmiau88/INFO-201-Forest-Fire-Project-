@@ -60,7 +60,13 @@ Our [data set](https://www.kaggle.com/ananthu017/california-wildfire-incidents-2
 
 ## **Summary Information**
 
-By parsing the information in our data set, we found there to be a total of **1,636 fires** in California spanning the years of 2013-2019. The data set provided **40** unique features of each fire (not every feature pertained to each fire). To get a more closer look we found there to be **59** individual counties that had fire information. The largest fire within our data set was a ranch fire at the Mendocino Complex. We also pursued more in-depth information in our aggregate table.
+- By parsing the information in our data set, we found there to be a total of **1,636 fires** in California spanning the years of 2013-2019.
+
+- The data set provided **40** unique features of each fire (not every feature pertained to each fire).
+
+- To get a more closer look we found there to be **59** individual counties that had fire information.
+
+- The largest fire within our data set was a ranch fire at the Mendocino Complex. We also pursued more in-depth information in our aggregate table.
 
 ## **Average number of fires per county from 2013-2019 in California**
 
@@ -79,6 +85,9 @@ kable(df)
 
 
 ## **Charts and Chart Descriptions**
+
+**Disclaimer:**
+**The data set does not provide values for the entirety of 2019, which has impacted the data visualizations for 2019**
 
 #### Chart 1:
 
@@ -119,9 +128,5 @@ ggplotly(county_fires_plot)
 ```
 
 This chart was intended to show the relationship between *years* and the *average time it took to contain each fire*. The most pertinent observation was that as time has elapsed, the average time it took to contain all fires each year has also increased. It is important to note that this statistic is correlated to the average number of acres burned each year: the more acres a fire covers, the longer it will take to completely extinguish the fire. While similar to the chart displaying the average number of acres burned each year, this observation can help give better context as it can be hard to understand the true scope of, for example, 100 acres or 1000 acres burned. The reason why we included this chart was to learn about how violent the wildfires have become over this range of years, as the data points that show a greater average number of days that it takes to contain the wildfires, the more serious the wildfires were in those years. 
-
-
-**Disclaimer:**
-**The data set does not provide values for the entirety of 2019, which has impacted the data visualizations for 2019**
 
 ----
