@@ -5,14 +5,15 @@ library(lintr)
 library(styler)
 library(RColorBrewer)
 
-fires <- read.csv("../data/California_Fire_Incidents.csv")
+fires <- read.csv("https://raw.githubusercontent.com/dmiau88/INFO-201-Forest-Fire-Project-/main/data/California_Fire_Incidents.csv")
+
 
 #Intro Page
 
 Introduction <- tabPanel(
   "Introduction",
   mainPanel(
-    h1("Introductory Page"),
+    h1("Overview of our project"),
     p("Welcome to my assignment 4! For my assignment, I have chosen to track the variables of greenhouse gases,
       coal, and CO2 using a data set compiled by Our World in Data (link below). Through working with
       the data, I have looked to find relevant values and trends within the data that will allow me
@@ -34,13 +35,13 @@ Introduction <- tabPanel(
 #Chart 1 Page
 
 ChartPage1 <- tabPanel(
-  "Interactive Visual Page 1 - Counting Number of Fire Occurences by month",
+  "Visual Chart 1",
   sidebarLayout(
     sidebarPanel(
       p("Select your viewing options!"),
-      selectInput("country_id",
-                  label = h3("Country"),
-                  choices = totalghg_graphdata$country
+      selectInput("fires_year_id",
+                  label = h3("Year"),
+                  choices = fires$ArchiveYear
       ),
       selectInput("color_id",
                   label = h3("Color"),
@@ -48,9 +49,9 @@ ChartPage1 <- tabPanel(
       )
     ),
     mainPanel(
-      h2("Climate Change Visualization"),
+      h2("Finding the number of fires occurring each month in each year"),
       p("Below is my interactive visualization showing the total greenhouse gas emissions for each country"),
-      plotlyOutput(outputId = "country_ghg"),
+      plotlyOutput(outputId = "fires_per_month"),
       p("The reason why I chose to include this chart was to provide an individualized snapshot of each country's
         greenhouse gas emissions. Compared to the large data chart (even when you use dplyr to parse some of the
         data, it can get a little overwhelming. While the data visualilzations does not include functionality to
@@ -63,23 +64,23 @@ ChartPage1 <- tabPanel(
 #Chart 2 Page
 
 ChartPage2 <- tabPanel(
-  "Interactive Visual Page 1 - Counting Number of Fire Occurences by month",
+  "Visual Chart 2",
   sidebarLayout(
     sidebarPanel(
       p("Select your viewing options!"),
-      selectInput("country_id",
-                  label = h3("Country"),
-                  choices = totalghg_graphdata$country
+      selectInput("county_id",
+                  label = h3("County"),
+                  choices = fires$Counties
       ),
-      selectInput("color_id",
+      selectInput("color_id2",
                   label = h3("Color"),
                   choices = brewer.pal(8, "Set2")
       )
     ),
     mainPanel(
-      h2("Climate Change Visualization"),
+      h2("Finding the average number of acres burned per year by wildfires"),
       p("Below is my interactive visualization showing the total greenhouse gas emissions for each country"),
-      plotlyOutput(outputId = "country_ghg"),
+      plotlyOutput(outputId = "avg_acres_burned"),
       p("The reason why I chose to include this chart was to provide an individualized snapshot of each country's
         greenhouse gas emissions. Compared to the large data chart (even when you use dplyr to parse some of the
         data, it can get a little overwhelming. While the data visualilzations does not include functionality to
@@ -93,23 +94,23 @@ ChartPage2 <- tabPanel(
 #Chart 3 Page
 
 ChartPage3 <- tabPanel(
-  "Interactive Visual Page 1 - Containing Fires",
+  "Visual Chart 3",
   sidebarLayout(
     sidebarPanel(
-      p("Average Time to Contain Fires Per Year Per County"),
-      selectInput("country_id",
-                  label = h3("Country"),
-                  choices = totalghg_graphdata$country
+      p("Select your viewing options!"),
+      selectInput("num_fires_year_id",
+                  label = h3("Year"),
+                  choices = fires$ArchiveYear
       ),
-      selectInput("color_id",
+      selectInput("color_id3",
                   label = h3("Color"),
                   choices = brewer.pal(8, "Set2")
       )
     ),
     mainPanel(
-      h2("Climate Change Visualization"),
+      h2("Finding the total number of fires per year based on counties"),
       p("Below is my interactive visualization showing the total greenhouse gas emissions for each country"),
-      plotlyOutput(outputId = "country_ghg"),
+      plotlyOutput(outputId = "total_num_fires"),
       p("The reason why I chose to include this chart was to provide an individualized snapshot of each country's
         greenhouse gas emissions. Compared to the large data chart (even when you use dplyr to parse some of the
         data, it can get a little overwhelming. While the data visualilzations does not include functionality to
@@ -122,9 +123,9 @@ ChartPage3 <- tabPanel(
 #Summary Page
 
 SummaryPage <- tabPanel(
-  "Introduction",
+  "Summary Takeaways",
   mainPanel(
-    h1("Introductory Page"),
+    h1("Summary"),
     p("Welcome to my assignment 4! For my assignment, I have chosen to track the variables of greenhouse gases,
       coal, and CO2 using a data set compiled by Our World in Data (link below). Through working with
       the data, I have looked to find relevant values and trends within the data that will allow me
@@ -146,11 +147,11 @@ SummaryPage <- tabPanel(
 #Fluid Page Code
 
 ui <- fluidPage(
-  h1("INFO 201 Assingment 4: Data Applications (Climate Change)"),
-  h2("Kyle Tsang, Section AB"),
+  h1("INFO 201 Final Deliverable: California Forest Fires"),
+  h2("Created by Andrew Wong, Kyle Tsang, Ibrahim Yusef, Daniel Miau"),
   navbarPage(
     inverse = TRUE,
-    "Climate Change Assignment",
+    "California Forest Fires",
     Introduction,
     ChartPage1,
     ChartPage2,
@@ -159,4 +160,3 @@ ui <- fluidPage(
   )
 )
 
-#Define Server
