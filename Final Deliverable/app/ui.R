@@ -4,6 +4,7 @@ library(plotly)
 library(lintr)
 library(styler)
 library(RColorBrewer)
+library(shinythemes)
 
 fires <- read.csv("https://raw.githubusercontent.com/dmiau88/INFO-201-Forest-Fire-Project-/main/data/California_Fire_Incidents.csv")
 
@@ -41,7 +42,8 @@ ChartPage1 <- tabPanel(
       p("Select your viewing options!"),
       selectInput("fires_year_id",
                   label = h3("Year"),
-                  choices = fires$ArchiveYear
+                  choices = fires$ArchiveYear,
+                  selected = "2013"
       ),
       selectInput("color_id",
                   label = h3("Color"),
@@ -70,7 +72,8 @@ ChartPage2 <- tabPanel(
       p("Select your viewing options!"),
       selectInput("county_id",
                   label = h3("County"),
-                  choices = fires$Counties
+                  choices = fires$Counties,
+                  selected = "Los Angeles"
       ),
       selectInput("color_id2",
                   label = h3("Color"),
@@ -98,9 +101,10 @@ ChartPage3 <- tabPanel(
   sidebarLayout(
     sidebarPanel(
       p("Select your viewing options!"),
-      selectInput("num_fires_year_id",
-                  label = h3("Year"),
-                  choices = fires$ArchiveYear
+      selectInput("num_fires_county_id",
+                  label = h3("County"),
+                  choices = fires$Counties,
+                  selected = "Los Angeles"
       ),
       selectInput("color_id3",
                   label = h3("Color"),
@@ -146,9 +150,9 @@ SummaryPage <- tabPanel(
 
 #Fluid Page Code
 
-ui <- fluidPage(
-  h1("INFO 201 Final Deliverable: California Forest Fires"),
-  h2("Created by Andrew Wong, Kyle Tsang, Ibrahim Yusef, Daniel Miau"),
+ui <- fluidPage(theme = shinytheme("cerulean"),
+  h3("INFO 201 Final Deliverable: California Forest Fires"),
+  h3("Created by Andrew Wong, Kyle Tsang, Ibrahim Yusef, Daniel Miau"),
   navbarPage(
     inverse = TRUE,
     "California Forest Fires",
