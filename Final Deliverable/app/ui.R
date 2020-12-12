@@ -27,11 +27,11 @@ Introduction <- tabPanel(
       find patterns not only in the impact of these fires, but also in their
       causes."),
     img(src='forest_fires.png', height = "130px" , width = "400px"),
-    h1(strong("Questions we are looking to answer")),
-    p("The main questions we would like to answer in this project are 
-      1. What is the number of fires that occurred each month from 2013-2018?
-      2. What areas in California were most affected by forest fires?
-      3. What was the total number of fires each year in each county?"),
+    h1(strong("Questions We Are Looking to Answer")),
+    p(strong("The main questions we would like to answer in this project are:")),
+    p("1. What is the number of fires that occurred each month from 2013-2018?"),
+    p("2. What areas in California were most affected by forest fires?"),
+    p("3. What was the total number of fires each year in each county?"),
     h1(strong("Our Dataset")),
     p(a("Link to Dataset", href = "https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020")),
     p("In order to answer the questions above, we utilized a specific dataset
@@ -62,14 +62,19 @@ ChartPage1 <- tabPanel(
       )
     ),
     mainPanel(
-      h2("Finding the number of fires occurring each month in each year"),
-      p("Below is my interactive visualization showing the total greenhouse gas emissions for each country"),
+      h2("Number of Fires Each Month, Per Year"),
+      p("Below is our interactive visualization showing the number of fires each month per year."),
       plotlyOutput(outputId = "fires_per_month"),
-      p("The reason why I chose to include this chart was to provide an individualized snapshot of each country's
-        greenhouse gas emissions. Compared to the large data chart (even when you use dplyr to parse some of the
-        data, it can get a little overwhelming. While the data visualilzations does not include functionality to
-        compare countries in terms of greenhouse gas emissions, it still helps to provide a visual illustration
-        of the data")
+      p("The reason why we chose to include this chart is to further organize 
+        our data into a month-by-month snapshot. By illustrating the
+        month-to-month impacts of wildfires (in this case the number of 
+        fires each month, we were able to see that the general trend in the 
+        number of wildfires each month, per year was that a majority of
+        wildfires happen in July. Not only can the viewer see trends in which
+        months have the most wildfires, they can also see the specific number
+        of wildfires that occured each month. A shocking statistic that we
+        found was that in July of 2016, there were 45 recorded wildfires.
+        However, in July of 2017, there were 112 recorded wildfires.")
     )
   )
 )
@@ -92,14 +97,18 @@ ChartPage2 <- tabPanel(
       )
     ),
     mainPanel(
-      h2("Finding the average number of acres burned per year by wildfires"),
-      p("Below is my interactive visualization showing the total greenhouse gas emissions for each country"),
+      h2("Average Number of Acres Burned, Per Year"),
+      p("Below is our interactive visualization showing the average number of acres burned per year."),
       plotlyOutput(outputId = "avg_acres_burned"),
-      p("The reason why I chose to include this chart was to provide an individualized snapshot of each country's
-        greenhouse gas emissions. Compared to the large data chart (even when you use dplyr to parse some of the
-        data, it can get a little overwhelming. While the data visualilzations does not include functionality to
-        compare countries in terms of greenhouse gas emissions, it still helps to provide a visual illustration
-        of the data")
+      p("The reason why we chose to include this chart is to localize the trends
+        we originally found in our exploratory analysis. By providing the viewer
+        to choose different counties, they can see the local impacts of wildfires
+        across California. By using a line chart, we can easily spot trends in
+        the data. Furthermore, the viewer can also see the specific numbers of
+        average acres burned for each year. A relevant data point that we found 
+        using this visualization was that for San Bernadino County, California's
+        largest county, there was a spike in average acres burned in 2016, where
+        the average number of acres burned was 11,114.")
     )
   )
 )
@@ -123,14 +132,20 @@ ChartPage3 <- tabPanel(
       )
     ),
     mainPanel(
-      h2("Finding the total number of fires per year based on counties"),
+      h2("Total Number of Fires Each Per, Per County"),
       p("Below is my interactive visualization showing the total greenhouse gas emissions for each country"),
       plotlyOutput(outputId = "total_num_fires"),
-      p("The reason why I chose to include this chart was to provide an individualized snapshot of each country's
-        greenhouse gas emissions. Compared to the large data chart (even when you use dplyr to parse some of the
-        data, it can get a little overwhelming. While the data visualilzations does not include functionality to
-        compare countries in terms of greenhouse gas emissions, it still helps to provide a visual illustration
-        of the data")
+      p("Similar to the last chart, this chart provides the viewer with 
+        an opportunity to see the impact of wildfires on localized California
+        counties. We understand that the total number of fires does not illustrate
+        the whole picture of the impact of wildfires on each county, that is why
+        we wanted to include this chart in conjunction with the previous one
+        (average acres burned). This way the viewer can cross-check the acres
+        burned data with the number of fires data to create a greater picture
+        of the impact of wildfires on California counties. A relevant data point
+        that we found was that for Los Angeles county, in 2017 there was almost 
+        double the amount of fires than in 2016, the total number of fires 
+        increasing from 7 to 13.")
     )
   )
 )
@@ -140,23 +155,21 @@ ChartPage3 <- tabPanel(
 SummaryPage <- tabPanel(
   "Summary Takeaways",
   mainPanel(
-    h1("Summary"),
-    p("Welcome to my assignment 4! For my assignment, I have chosen to track the variables of greenhouse gases,
-      coal, and CO2 using a data set compiled by Our World in Data (link below). Through working with
-      the data, I have looked to find relevant values and trends within the data that will allow me
-      to put together a greater picture about climate change over time, and how differnet countries
-      (my work focuses on the USA), has impacted climate change throughout history."),
-    p(a("Our World in Data", href = "https://ourworldindata.org/co2-and-other-greenhouse-gas-emissions")),
-    p(strong("Below are 5 relevant data points about climate change that I calculated
-             using the raw data compiled by Our World in Data:")),
-    p("The difference between the USA CO2 emissions from coal in the years 2000 and 2010 was 159.117 million tonnes"),
-    p("The year where the USA's share of global CO2 emissions was the greatest was in 2000"),
-    p("In the most recent documented year for this metric (2014), the USA's greenhouse gas
-      emissions per capita was 19.135 tonnes"),
-    p("After charging the USA's greenhouse gas emissions each year, I found that the greatest emissions
-      came in 2007, at 6601.13 million tonnes of carbon dioxide equivalents."),
-    p("In 1990, the United States had the greatest cumulative share of global CO2 emissions at 30.716% of global emissions.
-      This emissions number was also the greatest cumulative share of global CO2 emissions within the entire datset.")
+    h1("Summary Takeaways "),
+    p(strong("Below are 3 relevant data points about the California Wildfires 
+             that we observed:")),
+    p("Throughout the data frame, the month with the highest average number of 
+      fires was July at just over 59 fires. Each year besides 2013 and 2019
+      had July as the month with the most fires."),
+    p("One of the largest counties in California, Los Angeles county had a large
+      spike in average acres burned in 2018, going from 2,399 average acres
+      burned in 2017 to 12,779 average acres burned in 2018."),
+    p("In Riverside County, between the years of 2014 and 2016 the total number
+      of fires was below 10 per year. However, After a spike to 52 fires in 2017,
+      Riverside County has had 25 fires in 2018 and 33 fires in 2019. This 
+      massive uptick in the total number of fires was alarming to us."),
+    p(strong("Thank you for viewing our project! We hope you were able to see
+             key takeaways about the California Wildfires."))
   ))
 
 #Fluid Page Code

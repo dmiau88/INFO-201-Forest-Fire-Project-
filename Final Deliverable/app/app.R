@@ -3,6 +3,7 @@ library(shiny)
 library(ggplot2)
 library(plotly)
 library(RColorBrewer)
+library(shinythemes)
 
 source("ui.R")
 source("app_server.R")
