@@ -63,7 +63,8 @@ ChartPage1 <- tabPanel(
     ),
     mainPanel(
       h2("Number of Fires Each Month, Per Year"),
-      p("Below is our interactive visualization showing the number of fires each month per year."),
+      p("Below is our interactive visualization showing the 
+        number of fires each month per year."),
       plotlyOutput(outputId = "fires_per_month"),
       p("The reason why we chose to include this chart is to further organize 
         our data into a month-by-month snapshot. By illustrating the
@@ -98,7 +99,8 @@ ChartPage2 <- tabPanel(
     ),
     mainPanel(
       h2("Average Number of Acres Burned, Per Year"),
-      p("Below is our interactive visualization showing the average number of acres burned per year."),
+      p("Below is our interactive visualization showing the 
+        average number of acres burned per year."),
       plotlyOutput(outputId = "avg_acres_burned"),
       p("The reason why we chose to include this chart is to localize the trends
         we originally found in our exploratory analysis. By providing the viewer
@@ -132,8 +134,9 @@ ChartPage3 <- tabPanel(
       )
     ),
     mainPanel(
-      h2("Total Number of Fires Each Per, Per County"),
-      p("Below is my interactive visualization showing the total greenhouse gas emissions for each country"),
+      h2("Total Number of Fires Each Year, Per County"),
+      p("Below is our interactive visualization showing the total number
+        of fires each year, categorized by counties in Calfornia."),
       plotlyOutput(outputId = "total_num_fires"),
       p("Similar to the last chart, this chart provides the viewer with 
         an opportunity to see the impact of wildfires on localized California
